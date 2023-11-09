@@ -11,11 +11,11 @@ screen = pygame.display.set_mode((800, 600))
 Colour= namedtuple('Color',['red','green','blue'])
 rectColor = Colour(0,0,0)
 # Background
-background = pygame.image.load('./background.png')
+background = pygame.image.load('./backgroundImage.png')
 rect= pygame.draw.rect(screen,rectColor,[0,0,100,100])
 # Sound
 winsound = pygame.mixer.Sound("./pluck-loop-91bpm-132429.mp3")
-mixer.music.load("background.wav")
+mixer.music.load("backgrounds.wav")
 mixer.music.play(-1)
 #joystick
 import serial
@@ -44,10 +44,10 @@ def read_arduino_data():
     return direction_x, direction_y
 # Caption and Icon
 pygame.display.set_caption("Space Invader")
-icon = pygame.image.load('ufo.png')
+icon = pygame.image.load('uf.png')
 pygame.display.set_icon(icon)
 # Player
-playerImg = pygame.image.load('player.png')
+playerImg = pygame.image.load('gun.png')
 playerX = 370
 playerY = 480
 playerX_change = 0
@@ -60,7 +60,7 @@ enemyX_change = []
 enemyY_change = []
 num_of_enemies = 5
 for i in range(num_of_enemies):
-    enemyImg.append(pygame.image.load('enemy.png'))
+    enemyImg.append(pygame.image.load('enemies.png'))
     enemyX.append(random.randint(0, 736))
     enemyY.append(random.randint(50, 150))
     enemyX_change.append(30)
@@ -68,7 +68,7 @@ for i in range(num_of_enemies):
 # Bullet
 # Ready - You can't see the bullet on the screen
 # Fire - The bullet is currently moving
-bulletImg = pygame.image.load('bullet.png')
+bulletImg = pygame.image.load('bullets.png')
 bulletX = 0
 bulletY = 480
 bulletX_change = 0
@@ -133,7 +133,7 @@ while running:
     #     elif y < 512:      playerY_change = 5 
     if y == 'up':
         if bullet_state is "ready":
-            bulletSound = mixer.Sound("laser.wav")
+            bulletSound = mixer.Sound("lasers.wav")
             bulletSound.play()
             # Get the current x cordinate of the spaceship
             bulletX = playerX
@@ -171,7 +171,7 @@ while running:
         # Collision
         collision = isCollision(enemyX[i], enemyY[i], bulletX, bulletY)
         if collision:
-            explosionSound = mixer.Sound("explosion.wav")
+            explosionSound = mixer.Sound("explosions.wav")
             explosionSound.play()
             bulletY = 480
             bullet_state = "ready"
