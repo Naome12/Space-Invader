@@ -64,7 +64,7 @@ for i in range(num_of_enemies):
     enemyX.append(random.randint(0, 736))
     enemyY.append(random.randint(50, 150))
     enemyX_change.append(30)
-    enemyY_change.append(10)
+    enemyY_change.append(25)
 # Bullet
 # Ready - You can't see the bullet on the screen
 # Fire - The bullet is currently moving
@@ -85,7 +85,7 @@ def show_score(x, y):
     score = font.render("Score : " + str(score_value), True, (255, 255, 255))
     screen.blit(score, (x, y))
 def game_over_text():
-    over_text = textFont.render("GAME OVER YOU LOOSE", True, (255, 255, 255))
+    over_text = textFont.render("YOU LOOSE😢", True, (255, 255, 255))
     screen.blit(over_text, (200, 250))
 def win_text():
     win = textFont.render("You Win !!!!!", True, (255, 255, 255))
@@ -163,10 +163,10 @@ while running:
             break
         enemyX[i] += enemyX_change[i]
         if enemyX[i] <= 0:
-            enemyX_change[i] = 8
+            enemyX_change[i] = 15
             enemyY[i] += enemyY_change[i]
         elif enemyX[i] >= 736:
-            enemyX_change[i] = -8
+            enemyX_change[i] = -15
             enemyY[i] += enemyY_change[i]
         # Collision
         collision = isCollision(enemyX[i], enemyY[i], bulletX, bulletY)
@@ -186,7 +186,7 @@ while running:
     if bullet_state is "fire":
         fire_bullet(bulletX, bulletY)
         bulletY -= bulletY_change
-    if score_value == 20 :
+    if score_value == 10 :
        num_of_enemies = 0
        background = pygame.image.load('./backG.png')
        winsound.play()
